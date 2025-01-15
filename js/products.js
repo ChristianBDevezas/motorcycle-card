@@ -30,9 +30,8 @@ if(selectIdProduct === null) {
 const itemId = +(selectIdProduct);
 console.log(itemId, typeof(itemId));
 
-// let deleteProductID = selectedProductKeyName(itemId);
-let selectProductId = selectedProductKeyName(itemId);
-console.log(selectProductId, typeof(selectProductId));
+let selectProductIdName = selectedProductKeyName(itemId);
+console.log(selectProductIdName, typeof(selectProductIdName));
 
 // article element
 const article = document.createElement("article");
@@ -89,6 +88,7 @@ function createCard() {
     const deleteBtn = document.createElement("button");
     deleteBtn.classList.add("card__delete");
     deleteBtn.innerText = "Delete";
+    deleteBtn.addEventListener("click", removeCard);
 
     figure.appendChild(img);
     figure.appendChild(figcaption);
@@ -108,21 +108,15 @@ function createCard() {
 // body.appendChild(main);
 body.appendChild(createCard());
 
-// get some elements from selected card
-const cardArticle = document.querySelector("article");
-const cardDeleteBtn = document.querySelector("button.card__delete");
-
-// remove selected item
-cardDeleteBtn.addEventListener("click", () => {
-    cardArticle.remove();
+// remove selected card
+function removeCard() {
+    article.remove();
 
     localStorage.removeItem("item_ID");
-    // localStorage.removeItem(deleteProductID);
-    localStorage.removeItem(selectProductId);
-    // localStorage.clear();
+    localStorage.removeItem(selectProductIdName);
     
     window.location.href = "./index.html";
-});
+}
 
 window.addEventListener("DOMContentLoaded", () => {
     executeAnimation();
@@ -134,9 +128,6 @@ function executeAnimation() {
     
     if(selectedProduct === null) return;
     
-    // let selectedProductName = selectedProductKeyName(selectedProduct);
-    // console.log(selectedProductName);
-    
     let hasAnimation = cardAnimationOccured(selectedProduct);
     console.log(hasAnimation, typeof(hasAnimation));
     
@@ -144,7 +135,6 @@ function executeAnimation() {
         figure.classList.remove(getCardAnimationClass());
     }
     else {
-        // localStorage.setItem(selectedProductName, true);
-        localStorage.setItem(selectProductId, true);
+        localStorage.setItem(selectProductIdName, true);
     }
 }

@@ -11,7 +11,8 @@ console.log(selectIdProduct, typeof(selectIdProduct));
 const body = document.body;
 
 // main element
-const main = document.createElement("main");
+// const main = document.createElement("main");
+const main = document.querySelector("main");
 main.classList.add("container");
 
 // message element
@@ -54,59 +55,75 @@ function createCard() {
         }
     }
 
-    // card image
-    const img = document.createElement("img");
-    // img.src = "img/gsx-1300r.jpg";
-    img.src = currentItem.img;
-    // img.setAttribute("src", currentItem.img);
-    img.setAttribute("alt", currentItem.description);
-    // img.alt = currentItem.description;
-    // img.classList.add("image-effect");
+    // // card image
+    // const img = document.createElement("img");
+    // // img.src = "img/gsx-1300r.jpg";
+    // img.src = currentItem.img;
+    // // img.setAttribute("src", currentItem.img);
+    // img.setAttribute("alt", currentItem.description);
+    // // img.alt = currentItem.description;
+    // // img.classList.add("image-effect");
 
-    const figcaption = document.createElement("figcaption");
-    figcaption.classList.add("card__maker", "text-effect");
-    // figcaption.classList.add("card__maker");
-    // figcaption.innerText = "Suzuki";
-    figcaption.innerText = currentItem.title;
+    // const figcaption = document.createElement("figcaption");
+    // figcaption.classList.add("card__maker", "text-effect");
+    // // figcaption.classList.add("card__maker");
+    // // figcaption.innerText = "Suzuki";
+    // figcaption.innerText = currentItem.title;
 
-    // h4 element
-    const h4 = document.createElement("h4");
-    // h4.classList.add("card__model");
-    h4.classList.add("card__model", "text-effect");
-    // h4.innerText = "GSX 1300 Hayabusa";
-    h4.innerText = currentItem.description;
+    // // h4 element
+    // const h4 = document.createElement("h4");
+    // // h4.classList.add("card__model");
+    // h4.classList.add("card__model", "text-effect");
+    // // h4.innerText = "GSX 1300 Hayabusa";
+    // h4.innerText = currentItem.description;
 
-    // div element
-    const div = document.createElement("div");
-    div.classList.add("card__buttons");
+    // // div element
+    // const div = document.createElement("div");
+    // div.classList.add("card__buttons");
 
-    const link = document.createElement("a");
-    link.classList.add("card__link");
-    link.innerText = "Back to Home";
-    link.href = "index.html";
-    link.setAttribute("target", "_self");
+    // const link = document.createElement("a");
+    // link.classList.add("card__link");
+    // link.innerText = "Back to Home";
+    // link.href = "index.html";
+    // link.setAttribute("target", "_self");
 
-    const deleteBtn = document.createElement("button");
-    deleteBtn.classList.add("card__delete");
-    deleteBtn.innerText = "Delete";
+    // const deleteBtn = document.createElement("button");
+    // deleteBtn.classList.add("card__delete");
+    // deleteBtn.innerText = "Delete";
 
-    figure.appendChild(img);
-    figure.appendChild(figcaption);
+    // figure.appendChild(img);
+    // figure.appendChild(figcaption);
 
-    div.appendChild(link);
-    div.appendChild(deleteBtn);
+    // div.appendChild(link);
+    // div.appendChild(deleteBtn);
 
-    article.appendChild(figure);
-    article.appendChild(h4);
-    article.appendChild(div);
+    // article.appendChild(figure);
+    // article.appendChild(h4);
+    // article.appendChild(div);
 
-    main.appendChild(article);
+    // main.appendChild(article);
 
-    return main;
+    // return main;
+
+    // main class="container" must be enabled in HTML code
+    main.innerHTML = `<article class="card__item">
+            <figure class="card__image">
+                <img src=${currentItem.img} alt=${currentItem.description}>
+                <figcaption class="card__maker">${currentItem.title}</figcaption>
+            </figure>
+
+            <h4 class="card__model">${currentItem.description}</h4>
+
+            <div class="card__buttons">
+                <a href="index.html" class="card__link" target="_self">Back to Home</a>
+                <button class="card__delete">Delete</button>
+            </div>
+        </article>`;
 }
 
 // body.appendChild(main);
-body.appendChild(createCard());
+createCard();
+// body.appendChild(createCard());
 
 // get some elements from selected card
 const cardArticle = document.querySelector("article");
