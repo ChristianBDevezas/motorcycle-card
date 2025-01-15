@@ -3,7 +3,7 @@ import productsData from "./products-data.js";
 
 window.addEventListener(("DOMContentLoaded"), () => {
     displayItems();
-    selectItem();
+    // selectItem();
 });
 
 function displayItems() {
@@ -40,6 +40,8 @@ function displayItems() {
         // link.href = "products.html";
         link.setAttribute("href", "products.html");
         link.setAttribute("target", "_self");
+        link.setAttribute("id", `${data.id}`);
+        link.addEventListener("click", selectItem);
 
         figure.appendChild(img);
         figure.appendChild(figcaption);
@@ -54,23 +56,31 @@ function displayItems() {
     body.appendChild(main);
 }
 
-const selectItem = () => {
-    const links = document.querySelectorAll(".container a");
+function selectItem(e) {
+    const target = e.target;
 
-    links.forEach((link, index) => {
-        const {id, img, title, description} = productsData[index];
-        // const id = productsData[index].id;
+    const id = target.getAttribute("id");
 
-        link.addEventListener("click", (e) => {
-            e.preventDefault();           
-            // console.log(id, img, title, description);
-
-            // localStorage.setItem("item_ID", productsData[index].id);
-            localStorage.setItem("item_ID", id);
-
-            // window.location.href = `./products.html?id=${productsData[index].id}`;
-            // window.location.href = `./products.html?id=${id}`;
-            window.location = "./products.html";
-        });
-    });
+    localStorage.setItem("item_ID", id);
 }
+
+// const selectItem = () => {
+//     const links = document.querySelectorAll(".container a");
+
+//     links.forEach((link, index) => {
+//         const {id, img, title, description} = productsData[index];
+//         // const id = productsData[index].id;
+
+//         link.addEventListener("click", (e) => {
+//             e.preventDefault();           
+//             // console.log(id, img, title, description);
+
+//             // localStorage.setItem("item_ID", productsData[index].id);
+//             localStorage.setItem("item_ID", id);
+
+//             // window.location.href = `./products.html?id=${productsData[index].id}`;
+//             // window.location.href = `./products.html?id=${id}`;
+//             window.location = "./products.html";
+//         });
+//     });
+// }
